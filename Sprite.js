@@ -80,13 +80,8 @@ Sprite.prototype = {
     getSpriteUrl: function(img){
         var src = img.src,
             sprite = img.getAttribute('sprite');
-        if(sprite && sprite.match(/\/.*sprite/i)) {
-            return sprite;
-        } else if (src && src.match(/\/.*sprite/i)) {
-            return src;
-        } else {
-            return false;
-        }
+
+        return sprite || src || false;
     },
 
     preloadImage: function(src) {
@@ -268,7 +263,7 @@ SpriteManager.prototype = {
     sprites: null,
     _paused: true,
     initialFps: null,
-    fps: (window.GLOBAL_CONFIG && GLOBAL_CONFIG && GLOBAL_CONFIG.PERFORMANCE && GLOBAL_CONFIG.PERFORMANCE.SPRITE_FPS) || 15,
+    fps: 30,
     lastFrame: 0,
     raf: 0,
 
